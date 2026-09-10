@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windrose Hotels — Book a Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--blue:#b4863c;--blue-dark:#96702f;--dark:#12203a;--gray:#6b6f7a;--line:#e4ded0;--bg:#faf7f0;--green:#188038;}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',Arial,sans-serif;}
+  body{background:var(--bg);color:var(--dark);}
+  header{background:#12203a;border-bottom:1px solid #22335a;padding:14px 5%;display:flex;justify-content:space-between;align-items:center;}
+  .logo{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#d9b57a;letter-spacing:0.02em;}
+  .logo span{color:#fff;}
+  .wrap{max-width:640px;margin:30px auto;padding:0 16px;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:24px;margin-bottom:20px;box-shadow:0 4px 16px rgba(18,32,58,0.05);}
+  .card h2{font-size:19px;margin-bottom:16px;font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--dark);border-bottom:1px solid var(--line);padding-bottom:10px;}
+  .row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+  .field{flex:1;min-width:140px;}
+  .field label{display:block;font-size:12px;font-weight:bold;color:var(--gray);margin-bottom:5px;}
+  .field input,.field select{width:100%;padding:10px;border:1px solid var(--line);border-radius:4px;font-size:14px;}
+  .room-options{display:flex;flex-direction:column;gap:12px;}
+  .room-opt{border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;gap:14px;align-items:center;cursor:pointer;overflow:hidden;}
+  .room-opt img{width:90px;height:70px;object-fit:cover;border-radius:6px;flex-shrink:0;}
+  .room-opt-info{flex:1;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+  .room-opt.selected{border-color:var(--blue);background:#faf3e6;}
+  .room-opt b{display:block;font-size:14px;}
+  .room-opt span{font-size:12px;color:var(--gray);}
+  .price-tag{font-weight:bold;color:var(--blue);}
+  .summary-row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:8px;color:var(--gray);}
+  .summary-row.total{font-weight:bold;color:var(--dark);font-size:16px;border-top:1px solid var(--line);padding-top:10px;}
+  .btn{width:100%;background:var(--blue);color:#fff;border:none;padding:13px;border-radius:6px;font-size:15px;font-weight:bold;cursor:pointer;}
+  .btn:hover{background:var(--blue-dark);}
+  .card-icons{display:flex;gap:8px;margin-bottom:10px;}
+  .card-icons span{font-size:20px;}
+  .lock-note{font-size:12px;color:var(--gray);text-align:center;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:6px;}
+  .pay-tabs{display:flex;gap:8px;margin-bottom:20px;border-bottom:1px solid var(--line);}
+  .pay-tab{padding:10px 16px;font-size:13px;font-weight:600;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;}
+  .pay-tab.active{color:var(--blue);border-bottom-color:var(--blue);}
+  .pay-panel{display:none;}
+  .pay-panel.active{display:block;}
+  .upi-apps{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+  .upi-app{border:1px solid var(--line);border-radius:6px;padding:10px 16px;font-size:13px;cursor:pointer;}
+  .upi-app.selected{border-color:var(--blue);background:#faf3e6;font-weight:600;color:var(--blue);}
+  .bank-select{width:100%;padding:10px;border:1px solid var(--line);border-radius:4px;font-size:14px;}
+  #successBox{display:none;text-align:center;padding:40px 20px;}
+  #successBox .tick{font-size:50px;color:var(--green);}
+  #successBox h2{margin:14px 0 6px;}
+  #successBox p{color:var(--gray);font-size:14px;}
+  #bookingId{font-weight:bold;color:var(--dark);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Windrose <span>Hotels</span></div>
+</header>
+
+<div class="wrap">
+
+  <div id="bookingSection">
+    <div class="card">
+      <h2>1. Select Room</h2>
+      <div class="room-options" id="roomOptions">
+        <div class="room-opt" data-type="Standard Room" data-price="2100">
+          <img src="images/standard-room.jpg" alt="Standard Room">
+          <div class="room-opt-info">
+            <div><b>Standard Room</b><span>Queen bed · Free parking</span></div>
+            <div class="price-tag">₹2,100/night</div>
+          </div>
+        </div>
+        <div class="room-opt" data-type="Deluxe Room" data-price="3200">
+          <img src="images/deluxe-room.jpg" alt="Deluxe Room">
+          <div class="room-opt-info">
+            <div><b>Deluxe Room</b><span>King bed · Free WiFi · AC</span></div>
+            <div class="price-tag">₹3,200/night</div>
+          </div>
+        </div>
+        <div class="room-opt" data-type="Executive Suite" data-price="5800">
+          <img src="images/executive-suite.jpg" alt="Executive Suite">
+          <div class="room-opt-info">
+            <div><b>Executive Suite</b><span>Living area · Balcony · Breakfast</span></div>
+            <div class="price-tag">₹5,800/night</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>2. Stay Details</h2>
+      <div class="row">
+        <div class="field"><label>Check In</label><input type="date" id="checkIn"></div>
+        <div class="field"><label>Check Out</label><input type="date" id="checkOut"></div>
+        <div class="field"><label>Guests</label><input type="number" id="guests" min="1" value="2"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3. Your Details</h2>
+      <div class="row">
+        <div class="field"><label>Full Name</label><input type="text" id="custName" placeholder="Enter your name"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Email</label><input type="email" id="custEmail" placeholder="you@example.com"></div>
+        <div class="field"><label>Phone</label><input type="tel" id="custPhone" placeholder="10-digit number"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4. Payment</h2>
+
+      <div class="pay-tabs">
+        <div class="pay-tab active" data-method="card">💳 Card</div>
+        <div class="pay-tab" data-method="upi">📱 UPI</div>
+        <div class="pay-tab" data-method="netbanking">🏦 Net Banking</div>
+      </div>
+
+      <div class="pay-panel active" id="panel-card">
+        <div class="row">
+          <div class="field" style="flex:2;"><label>Card Number</label><input type="text" id="cardNumber" maxlength="19" placeholder="1234 5678 9012 3456"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Cardholder Name</label><input type="text" id="cardName" placeholder="As on card"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Expiry</label><input type="text" id="cardExpiry" maxlength="5" placeholder="MM/YY"></div>
+          <div class="field"><label>CVV</label><input type="password" id="cardCvv" maxlength="3" placeholder="•••"></div>
+        </div>
+      </div>
+
+      <div class="pay-panel" id="panel-upi">
+        <div class="upi-apps">
+          <div class="upi-app" data-app="Google Pay">Google Pay</div>
+          <div class="upi-app" data-app="PhonePe">PhonePe</div>
+          <div class="upi-app" data-app="Paytm">Paytm</div>
+        </div>
+        <div class="row">
+          <div class="field"><label>UPI ID</label><input type="text" id="upiId" placeholder="yourname@upi"></div>
+        </div>
+      </div>
+
+      <div class="pay-panel" id="panel-netbanking">
+        <div class="row">
+          <div class="field"><label>Select Bank</label>
+            <select class="bank-select" id="bankSelect">
+              <option value="">Choose your bank</option>
+              <option>State Bank of India</option>
+              <option>HDFC Bank</option>
+              <option>ICICI Bank</option>
+              <option>Axis Bank</option>
+              <option>Punjab National Bank</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-row"><span>Room</span><span id="sumRoom">—</span></div>
+      <div class="summary-row"><span>Nights</span><span id="sumNights">—</span></div>
+      <div class="summary-row total"><span>Total Amount</span><span id="sumTotal">₹0</span></div>
+
+      <button class="btn" id="payBtn">Pay & Confirm Booking</button>
+      <div class="lock-note">🔒 Payment secured — this is a demo, no real payment is charged</div>
+    </div>
+  </div>
+
+  <div id="successBox" class="card">
+    <div class="tick">✅</div>
+    <h2>Booking Confirmed!</h2>
+    <p>Your reservation has been saved. Booking ID: <span id="bookingId"></span></p>
+  </div>
+
+</div>
+
+<script>
+  const API_URL = 'https://windrose-hotel-1.onrender.com/api/bookings';
+  let selectedRoom = null;
+  let selectedMethod = 'card';
+  let selectedUpiApp = null;
+
+  document.querySelectorAll('.pay-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.pay-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      selectedMethod = tab.dataset.method;
+      document.getElementById('panel-' + selectedMethod).classList.add('active');
+    });
+  });
+
+  document.querySelectorAll('.upi-app').forEach(app => {
+    app.addEventListener('click', () => {
+      document.querySelectorAll('.upi-app').forEach(a => a.classList.remove('selected'));
+      app.classList.add('selected');
+      selectedUpiApp = app.dataset.app;
+    });
+  });
+
+  document.querySelectorAll('.room-opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('.room-opt').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      selectedRoom = { type: opt.dataset.type, price: Number(opt.dataset.price) };
+      updateSummary();
+    });
+  });
+
+  document.getElementById('checkIn').addEventListener('change', updateSummary);
+  document.getElementById('checkOut').addEventListener('change', updateSummary);
+
+  function nightsBetween() {
+    const inD = new Date(document.getElementById('checkIn').value);
+    const outD = new Date(document.getElementById('checkOut').value);
+    const diff = (outD - inD) / (1000 * 60 * 60 * 24);
+    return diff > 0 ? diff : 0;
+  }
+
+  function updateSummary() {
+    const nights = nightsBetween();
+    document.getElementById('sumRoom').textContent = selectedRoom ? selectedRoom.type : '—';
+    document.getElementById('sumNights').textContent = nights || '—';
+    const total = selectedRoom ? selectedRoom.price * (nights || 0) : 0;
+    document.getElementById('sumTotal').textContent = '₹' + total.toLocaleString('en-IN');
+  }
+
+  // format card number with spaces as user types
+  document.getElementById('cardNumber').addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g, '').slice(0, 16);
+    e.target.value = v.replace(/(.{4})/g, '$1 ').trim();
+  });
+  document.getElementById('cardExpiry').addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g, '').slice(0, 4);
+    if (v.length > 2) v = v.slice(0, 2) + '/' + v.slice(2);
+    e.target.value = v;
+  });
+
+  document.getElementById('payBtn').addEventListener('click', async () => {
+    const name = document.getElementById('custName').value.trim();
+    const email = document.getElementById('custEmail').value.trim();
+    const phone = document.getElementById('custPhone').value.trim();
+    const checkIn = document.getElementById('checkIn').value;
+    const checkOut = document.getElementById('checkOut').value;
+    const guests = document.getElementById('guests').value;
+
+    if (!selectedRoom) return alert('Please select a room');
+    if (!checkIn || !checkOut || nightsBetween() <= 0) return alert('Please select valid check-in/check-out dates');
+    if (!name || !email || !phone) return alert('Please fill your details');
+
+    let cardLast4 = '';
+    let paymentDetail = '';
+
+    if (selectedMethod === 'card') {
+      const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+      const cardName = document.getElementById('cardName').value.trim();
+      const cardExpiry = document.getElementById('cardExpiry').value;
+      const cardCvv = document.getElementById('cardCvv').value;
+      if (cardNumber.length !== 16 || !cardName || cardExpiry.length !== 5 || cardCvv.length !== 3) {
+        return alert('Please enter valid card details');
+      }
+      cardLast4 = cardNumber.slice(-4);
+      paymentDetail = 'Card';
+    } else if (selectedMethod === 'upi') {
+      const upiId = document.getElementById('upiId').value.trim();
+      if (!selectedUpiApp && !upiId) return alert('Please select a UPI app or enter your UPI ID');
+      paymentDetail = selectedUpiApp ? `UPI - ${selectedUpiApp}` : `UPI - ${upiId}`;
+    } else if (selectedMethod === 'netbanking') {
+      const bank = document.getElementById('bankSelect').value;
+      if (!bank) return alert('Please select your bank');
+      paymentDetail = `Net Banking - ${bank}`;
+    }
+
+    const total = selectedRoom.price * nightsBetween();
+
+    const payload = {
+      customerName: name,
+      email,
+      phone,
+      roomType: selectedRoom.type,
+      checkIn,
+      checkOut,
+      guests,
+      totalPrice: total,
+      paymentStatus: 'paid',
+      paymentMethod: paymentDetail,
+      cardLast4,
+    };
+
+    try {
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('Booking failed');
+      const data = await res.json();
+
+      document.getElementById('bookingSection').style.display = 'none';
+      document.getElementById('successBox').style.display = 'block';
+      document.getElementById('bookingId').textContent = data._id;
+    } catch (err) {
+      alert('Something went wrong: ' + err.message);
+    }
+  });
+</script>
+
+</body>
+</html>

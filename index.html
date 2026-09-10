@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windrose Hotels — 5-Star Stay in Coimbatore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#12203a; --navy-soft:#1c2c4d;
+    --gold:#b4863c; --gold-soft:#d9b57a;
+    --rose:#c98a72;
+    --cream:#faf7f0; --ink:#2b2f38; --gray:#6b6f7a; --line:#e7e1d3;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+  body{background:var(--cream);color:var(--ink);}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;}
+  a{text-decoration:none;color:inherit;}
+
+  /* Header */
+  header{
+    background:linear-gradient(180deg,var(--navy),var(--navy-soft));
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 5%;
+  }
+  .logo{display:flex;align-items:center;gap:10px;color:var(--gold-soft);font-family:'Cormorant Garamond',serif;font-size:24px;letter-spacing:0.03em;}
+  .logo svg{width:30px;height:30px;}
+  .header-right{display:flex;align-items:center;gap:26px;color:#e5e1d3;font-size:13px;}
+  .btn-book{background:#f4f0e6;color:var(--navy);padding:11px 24px;font-size:13px;font-weight:600;letter-spacing:0.04em;}
+  @media(max-width:700px){.header-right span{display:none;}}
+
+  /* Hero */
+  .hero{position:relative;height:70vh;min-height:420px;
+    background-color:var(--navy);
+    background-image:linear-gradient(rgba(18,32,58,0.35),rgba(18,32,58,0.55)),
+      url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1600&auto=format&fit=crop');
+    background-size:cover;background-position:center;
+  }
+  .hero-count{position:absolute;bottom:20px;right:5%;color:#fff;font-size:13px;letter-spacing:0.05em;}
+
+  /* Intro heading section */
+  .intro{padding:80px 8% 60px;text-align:center;}
+  .intro h1{font-size:clamp(28px,3.4vw,42px);color:var(--navy);line-height:1.25;max-width:900px;margin:0 auto 22px;}
+  .intro .rule{width:60px;height:2px;background:var(--rose);margin:0 auto 24px;}
+  .intro p{max-width:780px;margin:0 auto;color:var(--gray);font-size:14.5px;line-height:1.9;}
+
+  /* Offers */
+  .offers{padding:70px 8%;text-align:center;}
+  .eyebrow{font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-bottom:6px;}
+  .section-title{font-size:clamp(26px,3vw,36px);color:var(--navy);margin-bottom:10px;}
+  .rule-center{width:50px;height:2px;background:var(--rose);margin:0 auto 40px;}
+  .offer-card{
+    max-width:1000px;margin:0 auto;background:#fff;border:1px solid var(--line);
+    display:flex;flex-wrap:wrap;align-items:stretch;text-align:left;box-shadow:0 20px 50px -25px rgba(18,32,58,0.3);
+  }
+  .offer-card img{width:100%;max-width:420px;object-fit:cover;flex:1;min-height:260px;}
+  .offer-body{flex:1;min-width:260px;padding:34px;display:flex;flex-direction:column;justify-content:center;}
+  .offer-body h3{font-size:24px;color:var(--navy);margin-bottom:14px;}
+  .offer-body p{font-size:13.5px;color:var(--gray);line-height:1.8;margin-bottom:20px;}
+  .offer-body a{color:var(--rose);font-size:13px;font-weight:600;letter-spacing:0.03em;}
+
+  /* Gallery */
+  .gallery{padding:0 8% 80px;}
+  .gallery-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;max-width:1100px;margin:0 auto;}
+  .gallery-grid img{width:100%;height:100%;object-fit:cover;display:block;}
+  .gallery-sub{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:760px){.gallery-grid{grid-template-columns:1fr;}}
+
+  /* Amenities */
+  .amenities{background:var(--navy);padding:80px 8%;}
+  .amen-flex{display:flex;flex-wrap:wrap;gap:40px;max-width:1150px;margin:0 auto;align-items:flex-start;}
+  .amen-head{flex:1;min-width:220px;}
+  .amen-head .eyebrow{color:var(--rose);}
+  .amen-head h2{color:#f4f0e6;font-size:clamp(26px,3vw,36px);}
+  .amen-head .rule{background:var(--rose);width:50px;height:2px;margin-top:14px;}
+  .amen-grid{flex:3;min-width:280px;display:grid;grid-template-columns:repeat(4,1fr);gap:30px;}
+  .amen-item{color:#e5e1d3;}
+  .amen-item .ic{font-size:22px;color:var(--gold-soft);margin-bottom:10px;}
+  .amen-item p{font-size:13px;line-height:1.6;}
+  @media(max-width:800px){.amen-grid{grid-template-columns:1fr 1fr;}}
+
+  /* Contact */
+  .contact{padding:80px 8%;}
+  .contact-flex{display:flex;flex-wrap:wrap;gap:50px;max-width:1100px;margin:0 auto;}
+  .contact-left{flex:1;min-width:220px;}
+  .contact-left .eyebrow{color:var(--rose);}
+  .contact-left h2{font-size:clamp(26px,3vw,38px);color:var(--navy);line-height:1.3;}
+  .contact-left .rule{width:50px;height:2px;background:var(--rose);margin-top:16px;}
+  .contact-form{flex:2;min-width:280px;display:flex;flex-direction:column;gap:22px;}
+  .form-row{display:flex;gap:20px;flex-wrap:wrap;}
+  .form-field{flex:1;min-width:200px;}
+  .form-field label{display:block;font-size:12.5px;color:var(--navy);margin-bottom:8px;}
+  .form-field input,.form-field textarea{
+    width:100%;border:none;border-bottom:1px solid var(--line);padding:8px 2px;font-size:14px;background:transparent;outline:none;font-family:'Poppins';
+  }
+  .form-field input:focus,.form-field textarea:focus{border-color:var(--rose);}
+  .btn-submit{align-self:flex-start;background:var(--navy);color:#f4f0e6;padding:13px 30px;font-size:13px;letter-spacing:0.05em;font-weight:500;margin-top:6px;}
+
+  /* Reviews */
+  .reviews{background:#f2ede1;padding:80px 8%;text-align:center;}
+  .review-card{max-width:640px;margin:0 auto;}
+  .review-card p{font-style:italic;color:var(--gray);font-size:14.5px;line-height:1.9;margin-bottom:18px;}
+  .stars{color:var(--rose);letter-spacing:3px;font-size:16px;margin-bottom:6px;}
+  .review-name{font-size:12.5px;color:var(--navy);font-weight:600;}
+
+  /* Footer */
+  footer{background:var(--navy);color:#c9cad1;padding:50px 8% 26px;}
+  .foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;max-width:1150px;margin:0 auto;}
+  .foot-col h4{color:var(--gold-soft);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;}
+  .foot-col a,.foot-col p{display:block;font-size:13px;margin-bottom:10px;color:#c9cad1;}
+  .foot-bottom{text-align:center;font-size:11.5px;color:#7f849c;margin-top:36px;border-top:1px solid #263457;padding-top:18px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="46" stroke="#d9b57a" stroke-width="2"/>
+      <path d="M50 8 L58 50 L50 92 L42 50 Z" fill="#d9b57a"/>
+      <path d="M8 50 L50 42 L92 50 L50 58 Z" fill="#faf7f0" fill-opacity="0.8"/>
+    </svg>
+    Windrose
+  </div>
+  <div class="header-right">
+    <span>Call Us: +91 98765 43210</span>
+    <a href="customer.html" class="btn-book">Book Now</a>
+  </div>
+</header>
+
+<div class="hero"><div class="hero-count">1 / 6</div></div>
+
+<section class="intro">
+  <h1>Experience Windrose Hotel: A Premium Stay in the Heart of Dindigul</h1>
+  <div class="rule"></div>
+  <p>Nestled close to the city's landmarks, Windrose Hotel offers a seamless stay experience blending comfort with accessibility. Whether you're here for business, a celebration, or a relaxing getaway, every detail at Windrose is crafted around the way you travel — professional, personal, and purposeful.</p>
+</section>
+
+<section class="offers">
+  <div class="eyebrow">Limited Time</div>
+  <h2 class="section-title">Offers at Windrose</h2>
+  <div class="rule-center"></div>
+  <div class="offer-card">
+    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop" alt="Suite room">
+    <div class="offer-body">
+      <h3>Last-Minute Escape</h3>
+      <p>Planning a last-minute getaway? Book your stay at Windrose Hotel just one day in advance and enjoy up to 20% discount. Experience the perfect blend of comfort and value.</p>
+      <a href="customer.html">Book This Offer →</a>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="gallery-grid">
+    <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=1000&auto=format&fit=crop" alt="Lounge">
+    <div class="gallery-sub">
+      <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=600&auto=format&fit=crop" alt="Room">
+      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=600&auto=format&fit=crop" alt="Pool">
+    </div>
+  </div>
+</section>
+
+<section class="amenities">
+  <div class="amen-flex">
+    <div class="amen-head">
+      <div class="eyebrow">Every Detail Counts</div>
+      <h2>Amenities</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="amen-grid">
+      <div class="amen-item"><div class="ic">✈️</div><p>Around 3 km from Dindigul Railway Station</p></div>
+      <div class="amen-item"><div class="ic">🍽️</div><p>Multiple Dining Outlets</p></div>
+      <div class="amen-item"><div class="ic">🎉</div><p>Multiple Event Spaces</p></div>
+      <div class="amen-item"><div class="ic">🏊</div><p>Swimming Pool</p></div>
+      <div class="amen-item"><div class="ic">🏋️</div><p>Fitness Centre</p></div>
+      <div class="amen-item"><div class="ic">🚗</div><p>Complimentary Pickup for Website Bookings</p></div>
+      <div class="amen-item"><div class="ic">📶</div><p>Free High-Speed WiFi</p></div>
+      <div class="amen-item"><div class="ic">🔒</div><p>24/7 Security & Front Desk</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="contact-flex">
+    <div class="contact-left">
+      <div class="eyebrow">We're Just a Message Away</div>
+      <h2>Reach Out to Us</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-field"><label>Name*</label><input type="text" id="ctName" placeholder="Enter your name"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field"><label>Phone Number*</label><input type="tel" id="ctPhone" placeholder="Enter your phone number"></div>
+        <div class="form-field"><label>Email*</label><input type="email" id="ctEmail" placeholder="Enter your email"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field"><label>Comment</label><textarea rows="3" id="ctComment" placeholder="Your message"></textarea></div>
+      </div>
+      <button class="btn-submit" id="ctSubmit">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<section class="reviews">
+  <div class="eyebrow">Our Guests</div>
+  <h2 class="section-title">Reviews</h2>
+  <div class="rule-center"></div>
+  <div class="review-card">
+    <div class="stars">★★★★★</div>
+    <p>"We had a truly wonderful experience staying at Windrose. The ambience, warm staff, and comfortable rooms made our stay delightful. Looking forward to visiting again."</p>
+    <div class="review-name">— Aravind K.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-grid">
+    <div class="foot-col">
+      <h4>Windrose Hotels</h4>
+      <p>Dindigul, Tamil Nadu</p>
+      <p>reservations@windrosehotels.in</p>
+    </div>
+    <div class="foot-col">
+      <h4>Explore</h4>
+      <a href="#">Rooms</a>
+      <a href="#">Offers</a>
+      <a href="#">Amenities</a>
+    </div>
+    <div class="foot-col">
+      <h4>Account</h4>
+      <a href="#">Sign In</a>
+      <a href="#">My Bookings</a>
+    </div>
+  </div>
+  <div class="foot-bottom">© 2026 Windrose Hotels. All rights reserved.</div>
+</footer>
+
+<script>
+  document.getElementById('ctSubmit').addEventListener('click', async () => {
+    const name = document.getElementById('ctName').value.trim();
+    const phone = document.getElementById('ctPhone').value.trim();
+    const email = document.getElementById('ctEmail').value.trim();
+    const comment = document.getElementById('ctComment').value.trim();
+
+    if (!name || !phone || !email) {
+      alert('Please fill Name, Phone and Email');
+      return;
+    }
+
+    try {
+      const res = await fetch('https://windrose-hotel-1.onrender.com/api/contacts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, email, comment }),
+      });
+      if (!res.ok) throw new Error('Failed to send');
+      alert('Message sent! We will get back to you soon.');
+      document.getElementById('ctName').value = '';
+      document.getElementById('ctPhone').value = '';
+      document.getElementById('ctEmail').value = '';
+      document.getElementById('ctComment').value = '';
+    } catch (err) {
+      alert('Something went wrong: ' + err.message);
+    }
+  });
+</script>
+</body>
+</html>
